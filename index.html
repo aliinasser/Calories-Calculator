@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The best way to calc your calories and create your diet and training" />
+    <meta name="keywords" content="gym, fitness, calories, bodybuilding, workout, weight, height" />
+    <!-- PAGE TITLE -->
+    <title>Fitness</title>
+    <link rel="icon" href="./assets/images/logo.png" />
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="./assets/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/framework.css" />
+    <link rel="stylesheet" href="./assets/css/master.css" />
+    <!-- FIREBASE -->
+    <script src="./assets/firebase/firebase.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="./assets/js/master.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header transition fixed w-100 z100 p-10v">
+            <div class="container d-flex flex-between p-rel">
+                <a href="#" class="logo d-flex gap-10 align-center">
+                    <h1 class="c-white flex-center">Fitness</h1>
+                </a>
+                <div class="links d-flex flex-center gap-20">
+                    <ul class="d-flex gap-20 fw-bold fs-20 c-white">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Membership</a>
+                        </li>
+                        <li>
+                            <a href="#">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact US</a>
+                        </li>
+                    </ul>
+                    <div class="account c-white">
+                        <a href="#" aria-label="account" onclick="dropdown()">
+                            <i class="fa-solid fa-circle-user fs-30 pointer-none"></i>
+                        </a>
+                        <div class="account-menu dropdown p-abs bg-gray-2 rad-5 transition opacity-0 pointer-none">
+                            <div class="account-header txt-center b-shadow-b p-50h p-10v">
+                                <h2 class="fs-20 pointer-none">Ali Nasser</h2>
+                                <span class="fs-15 fw-nl c-gray-5 pointer-none">Member</span>
+                            </div>
+                            <div class="account-content d-flex flex-col gap-2">
+                                <a href="#" class="fs-15 w-100 h-100 pointer p-10h p-5v bg-gray-4" onclick="FB_Login('alinasser@gmail.com', 'A123456')">
+                                    <i class="fa-solid fa-user mr-10"></i> Fast Login
+                                </a>
+                                <a href="#" class="fs-15 w-100 h-100 pointer p-10h p-5v bg-gray-4" onclick="firebase.auth().signOut(); window.alert('logout succeed')">
+                                    <i class="fa-solid fa-user mr-10"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="landing h-100v"></div>
+        <div class="services p-50v">
+            <div class="title">
+                <h1>Our Services</h1>
+                <p>The only bad workout is the one that didn’t happen</p>
+            </div>
+            <div class="container">
+                <div class="boxes d-flex gap-20 justify-center flex-wrap">
+                    <a href="./s/calories.html" class="box">
+                        <div class="badge">
+                            <i class="fa-solid fa-fire-flame-curved fa-fw"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-bicycle fa-fw"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Calories</h2>
+                            <p>Calculator</p>
+                        </div>
+                    </a>
+                    <a href="#" href class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-burger fa-fw"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Diet</h2>
+                            <p>Creator</p>
+                        </div>
+                    </a>
+                    <a href="#" class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-dumbbell fa-fw"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Training</h2>
+                            <p>Creator</p>
+                        </div>
+                    </a>
+                    <a href="#" class="box">
+                        <div class="icon">
+                            <i class="fa-solid fa-chart-line fa-fw"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Dashboard</h2>
+                            <p>Data Viewer</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="subscriptions p-50v bg-gray-2">
+            <div class="title">
+                <h1>Subscriptions</h1>
+            </div>
+            <div class="container">
+                <div class="boxes d-flex gap-20 justify-center flex-wrap">
+                    <a href="#" class="box" plan-type="Current">
+                        <div class="icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Basic</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, at?
+                            </p>
+                        </div>
+                        <span class="prise" free></span>
+                    </a>
+                    <a href="#" class="box" plan-type="Lifetime">
+                        <div class="icon">
+                            <i class="fa-solid fa-user-secret"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Premium</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, at?
+                            </p>
+                        </div>
+                        <span class="prise" currency="$" dollar="9" cent="99"></span>
+                    </a>
+                    <a href="#" class="box" plan-type="Yearly">
+                        <div class="icon">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="details">
+                            <h2>Standard</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, at?
+                            </p>
+                        </div>
+                        <span class="prise" currency="$" dollar="4" cent="99"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

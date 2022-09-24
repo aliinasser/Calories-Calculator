@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+
+/* START HEADER */
+
+.header.active {
+    background-color: var(--c-gray-4);
+}
+
+@media (max-width: 768px) {
+    .header {
+        background-color: var(--c-gray-4);
+    }
+}
+
+@media (max-width: 768px) {
+    .header .links ul {
+        display: none;
+    }
+}
+
+.header .links li a {
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.header li a.active,
+.header li a:hover {
+    color: var(--c-main);
+}
+
+.header .account-menu {
+    top: 75px;
+    right: 10px;
+    overflow: hidden;
+}
+
+.header .account-menu.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* END HEADER */
+
+/* START LANDING */
+
+.landing {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--dark-box-shadow);
+    background-image: url("../images/background.jpg");
+}
+
+/* END LANDING */
+
+/* START SERVICES */
+
+.services .box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 220px;
+    height: 220px;
+    border-radius: var(--radius);
+    background-color: var(--c-second);
+}
+
+@media (max-width: 768px) {
+    .services .box {
+        width: 90%;
+    }
+}
+
+.services .box .badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--c-white-30);
+}
+
+.services .box .icon {
+    font-size: 50px;
+}
+
+/* END SERVICES */
+
+/* START SUBSCRIPTIONS */
+
+.subscriptions .box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+    padding: 30px 20px;
+    width: calc(((220px * 4) + (20px / 3)) / 3);
+    height: calc(((220px * 4) + (20px / 3)) / 3);
+    border-radius: var(--radius);
+    background-color: var(--c-second);
+}
+
+.subscriptions .box::before {
+    position: absolute;
+    content: attr(plan-type);
+    top: -10px;
+    right: -60px;
+    color: white;
+    padding: 30px 50px 0;
+    font-weight: bold;
+    text-transform: capitalize;
+    transform: rotate(45deg);
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+}
+
+@media (max-width: 768px) {
+    .subscriptions .box {
+        width: 90%;
+    }
+
+    .subscriptions .box:nth-child(2) {
+        order: 3;
+    }
+}
+
+@media (min-width: 1200px) {
+    .subscriptions .box:nth-child(2) {
+        transform: translateY(-20px);
+    }
+}
+
+.subscriptions .box .icon i {
+    font-size: 60px;
+}
+
+.subscriptions .box h2 {
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.subscriptions .box p {
+    max-width: 400px;
+    font-size: 14px;
+}
+
+.subscriptions .box span {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.subscriptions .box span[free]::before {
+    content: "Free";
+}
+
+.subscriptions .box span::before {
+    content: attr(currency) attr(dollar);
+}
+
+.subscriptions .box span::after {
+    position: relative;
+    content: attr(cent);
+    font-weight: normal;
+    font-size: 25px;
+    top: -18px;
+}
+
+/* END SUBSCRIPTIONS */
+
+/* START CALORIES */
+
+@media (max-width: 1485px) {
+    .calories-container {
+        flex-direction: column;
+    }
+}
+
+/* START SIDEBAR */
+
+
+.calories-container .sidebar {
+    position: relative;
+    top: calc(80px + 10px);
+    width: 300px;
+    height: calc(100vh - (80px + 20px + 30px));
+}
+
+@media (max-width: 1485px) {
+    .calories-container .sidebar {
+        top: 80px;
+        border-radius: var(--border-top);
+    }
+}
+
+@media (max-width: 1485px) {
+    .calories-container .sidebar {
+        height: fit-content;
+    }
+}
+
+@media (max-width: 1485px) {
+    .calories-container .sidebar {
+        width: 100%;
+    }
+}
+
+.calories-container .range {
+    width: 160px;
+    height: 160px;
+}
+
+.calories-container .outer {
+    width: 160px;
+    height: 160px;
+    box-shadow: 6px 6px 10px -1px rgb(0, 0, 0, 0.15),
+        -6px -6px 10px -1px rgb(255, 255, 255, 0.050);
+}
+
+.calories-container .inner {
+    box-shadow: inset 4px 4px 6px -1px rgb(0, 0, 0, 0.2),
+        inset -4px -4px 6px -1px rgb(255, 255, 255, 0.050);
+}
+
+.calories-container .result:after {
+    content: " cal";
+    color: var(--c-main);
+}
+
+@keyframes range100 {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes range0 {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 472;
+    }
+}
+
+.calories-container circle {
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 20px;
+    stroke-dasharray: 472;
+    stroke-dashoffset: 472;
+    opacity: 0;
+    transition: 1s 2.5s;
+    animation: range0 3s ease-in-out;
+}
+
+.calories-container .range.active circle {
+    opacity: 1;
+    transition: 0s;
+    animation: range100 3s ease-in-out forwards;
+}
+
+.calories-container .input span {
+    position: relative;
+    left: 5px;
+}
+
+.calories-container input,
+.calories-container select {
+    height: 40px;
+    color: white;
+    font-size: 16px;
+}
+
+/* END SIDEBAR */
+
+/* START CONTENT */
+
+.content {
+    position: relative;
+    overflow: auto;
+    padding: 0 20px;
+    top: calc(80px + 10px);
+    width: calc(100% - 300px);
+    height: calc(100vh - (80px + 20px + 30px));
+}
+
+@media (max-width: 1485px) {
+    .content {
+        top: 80px;
+        height: 500px;
+        width: 100%;
+        margin-bottom: calc(80px + 10px);
+        border-radius: var(--border-bottom);
+    }
+}
+
+table {
+    min-width: 1200px;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+table thead {}
+
+table thead td {
+    width: calc(100% / 8.4);
+    padding: 10px 0;
+}
+
+table tbody {
+    background-color: var(--c-gray-1);
+}
+
+table tbody td {
+    animation: fade 2s linear;
+}
+
+table tbody td:last-of-type button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #9f0000;
+}
+
+td:first-child {
+    overflow: hidden;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+td:last-child {
+    overflow: hidden;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* END CONTENT */
+
+/* END CALORIES */

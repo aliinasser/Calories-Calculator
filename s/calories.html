@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- META -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The best way to calc your calories and create your diet and training">
+    <meta name="keywords" content="gym, fitness, calories, bodybuilding, workout, weight, height">
+    <!-- PAGE TITLE -->
+    <link rel="icon" href="../assets/images/logo.png">
+    <title>theFitness - Calories</title>
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="../assets/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/framework.css">
+    <link rel="stylesheet" href="../assets/css/master.css">
+    <!-- FIREBASE -->
+    <script src="../assets/firebase/firebase.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="../assets/js/master.js" defer></script>
+</head>
+
+<body>
+    <div class="page d-flex">
+        <div class="header transition fixed w-100 z100 p-10v">
+            <div class="container d-flex flex-between p-rel">
+                <a href="#" class="logo d-flex gap-10 align-center">
+                    <h1 class="c-white flex-center">Fitness</h1>
+                </a>
+                <div class="links d-flex flex-center gap-20">
+                    <ul class="d-flex gap-20 fw-bold fs-20 c-white">
+                        <li><a href="../">Home</a></li>
+                        <li><a href="#">Membership</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact US</a></li>
+                    </ul>
+                    <div class="account c-white">
+                        <a href="#" aria-label="account" onclick="dropdown()"><i
+                                    class="fa-solid fa-circle-user fs-30 pointer-none"></i></a>
+                        <div class="account-menu dropdown p-abs bg-gray-2 rad-5 transition opacity-0 pointer-none">
+                            <div class="account-header txt-center b-shadow-b p-50h p-10v">
+                                <h2 class="fs-20 pointer-none">Ali Nasser
+                                </h2>
+                                <span class="fs-15 fw-nl c-gray-5 pointer-none">Member</span>
+                            </div>
+                            <div class="account-content d-flex flex-col gap-2">
+                                <a href="#" class="fs-15 w-100 h-100 pointer
+                                p-10h p-5v bg-gray-4" onclick="FB_Login('alinasser@gmail.com', 'A123456')"><i
+                                            class="fa-solid fa-user mr-10"></i>Fast
+                                        Login</a>
+                                <a href="#" class="fs-15 w-100 h-100 pointer
+                                p-10h p-5v bg-gray-4" onclick="firebase.auth().signOut(); window.alert('logout succeed')"><i
+                                            class="fa-solid fa-user  mr-10"></i>Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="calories-container d-flex p-rel p-20 w-100">
+            <div class="sidebar d-flex flex-col align-center flex-between p-50v p-20h bg-gray-1 rad-left-5">
+                <div class="range p-rel mb-50">
+                    <div class="outer rad-50 p-20 h-100 w-100">
+                        <div class="inner d-flex flex-center rad-50 h-100 w-100">
+                            <div class="result c-white fs-20 fw-bold">0</div>
+                        </div>
+                    </div>
+                    <svg class="p-abs t-0 l-0" xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                            <defs>
+                                <lineargradient id="GradientColor">
+                                    <stop offset="0%" stop-color="#9f0000" />
+                                    <stop offset="100%" stop-color="#9f0044" />
+                                </lineargradient>
+                            </defs>
+                            <circle cx="80" cy="80" r="70"
+                                stroke-linecap="round" />
+                        </svg>
+                </div>
+                <form class="calories d-flex flex-col align-center gap-10 w-100 p-20 bg-gray-2 rad-5 c-white o-auto" onsubmit="event.preventDefault()">
+                    <div class="input d-flex flex-col w-100">
+                        <label for="name" class="c-white fs-13 mb-10">Profile Name</label>
+                        <input id="name" class="name bg-gray-1 w-100 p-10 rad-5" type="text" value="New Profile" required>
+                    </div>
+                    <div class="double w-100 d-flex gap-10">
+                        <div class="input d-flex flex-col w-100">
+                            <label for="age" class="c-white fs-13 mb-10">Age</label>
+                            <input id="age" class="age bg-gray-1 w-100 p-10 rad-5" type="text" number required>
+                        </div>
+                        <div class="input d-flex flex-col w-100">
+                            <label class="c-white fs-13 mb-10">Gender</label>
+                            <select class="gender bg-gray-1 w-100 p-10 rad-5" required>
+                                    <option></option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="double w-100 d-flex gap-10">
+                        <div class="input d-flex flex-col w-100">
+                            <label for="height" class="c-white fs-13 mb-10">Height
+                                    (cm)</label>
+                            <input id="height" class="height bg-gray-1 w-100 p-10 rad-5" type="text" number required>
+                        </div>
+                        <div class="input d-flex flex-col w-100">
+                            <label for="weight" class="c-white fs-13 mb-10">Weight
+                                    (kg)</label>
+                            <input id="weight" class="weight bg-gray-1 w-100 p-10 rad-5" type="text" number required>
+                        </div>
+                    </div>
+                    <div class="input d-flex flex-col w-100">
+                        <label class="c-white fs-13 mb-10">Activity</label>
+                        <select class="activity bg-gray-1 w-100 p-10 rad-5" required>
+                                <option></option>
+                                <option value="0">0 Days Per Week</option>
+                                <option value="1-3">1-3 Days Per Week</option>
+                                <option value="3-5">3-5 Days Per Week</option>
+                                <option value="6-7">6-7 Days Per Week</option>
+                                <option value="max">Twice Per Day</option>
+                            </select>
+                    </div>
+                    <input type="submit" onclick="calories()" class="bg-gray-1 p-10 rad-5 c-white fw-bold fs-15 pointer w-100 transition mt-20" type="button" value="Calc">
+                    <input type="submit" onclick="calories()" class="bg-gray-1 p-10 rad-5 c-white fw-bold fs-15 pointer transition w-100" type="button" value="Calc And Save">
+                </form>
+            </div>
+            <div class="content rad-right-5 bg-gray-2 o-hidden">
+                <table class="w-95 c-white txt-center m-auto">
+                    <thead class="fw-bold bg-gray-3 t-0 sticky">
+                        <tr>
+                            <td>Name</td>
+                            <td>Age</td>
+                            <td>Gender</td>
+                            <td>Height</td>
+                            <td>Weight</td>
+                            <td>Activity</td>
+                            <td>Calories</td>
+                            <td>Date</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
